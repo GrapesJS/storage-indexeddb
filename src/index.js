@@ -1,18 +1,54 @@
 import grapesjs from 'grapesjs';
-import loadComponents from './components';
-import loadBlocks from './blocks';
 
-export default grapesjs.plugins.add('YOUR-PLUGIN-NAME', (editor, opts = {}) => {
+export default grapesjs.plugins.add('grapesjs-indexeddb', (editor, opts = {}) => {
   const options = { ...{
+    dbName: 'gjs',
+
+    objectStoreName: 'templates',
     // default options
   },  ...opts };
 
-  // Add components
-  loadComponents(editor, options);
+  const sm = editor.StorageManager;
+  const id = 'tgjs';
+  const storageName = 'indexeddb';
+  const objsName = options.objectStoreName;
 
-  // Add blocks
-  loadBlocks(editor, options);
+  // Init indexedDB
+  let db;
+  const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+  const request = indexedDB.open(options.dbName, 1);
+  request.onerror = () => sm.onError(storageName, request.errorCode);
+  request.onsuccess = () => {
+    db = request.result;
+    db.onerror = () => sm.onError(storageName, request.errorCode);
+  };
+  request.onupgradeneeded = e => {
+    e.currentTarget.result.createObjectStore(objsName, { keyPath: 'id' });
+  };
 
-  // TODO Remove
-  editor.on('load', () => editor.addComponents(`<div style="margin:100px; padding:25px;">Content loaded from the plugin</div>`, { at: 0 }))
+  const getDb = () => db;
+  const getObjectStore = () => {
+    return db.transaction([objsName], 'readwrite').objectStore(objsName);
+  }
+
+  sm.add(storageName, {
+    getDb,
+
+    getObjectStore,
+
+    load(keys, clb, clbErr) {
+      const request = getObjectStore().get(id);
+      request.onerror = clbErr;
+      request.onsuccess = () => {
+        const { id, ...data } = request.result || {};
+        clb(data);
+      };
+    },
+
+    store(data, clb, clbErr) {
+      const request = getObjectStore().put({ id, ...data });
+      request.onerror = clbErr;
+      request.onsuccess = clb;
+    },
+  });
 });

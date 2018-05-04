@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-indexeddb",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "GrapesJS IndexedDB Storage Wrapper",
   "main": "dist/YOUR-PLUGIN-NAME.min.js",
   "scripts": {
