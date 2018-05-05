@@ -3,10 +3,6 @@
 IndexedDB storage wrapper for GrapesJS
 
 ### Usage
-1. Update `package.json`
-1. Install dependencies `npm i` and run the local server `npm start`
-1. Start creating your plugin from `src/index.js`
-1. Show some gif/demo if possible
 1. Update README
 1. When you're ready update the production file `npm run build`
 1. Publish
@@ -17,13 +13,8 @@ IndexedDB storage wrapper for GrapesJS
 ## Summary
 
 * Plugin name: `grapesjs-indexeddb`
-* Components
-  * `new-component1`
-  * `new-component2`
-* Blocks
-  * `new-block1`
-  * `new-block1`
-...
+* Storage
+  * `indexeddb`
 
 
 
@@ -33,7 +24,8 @@ IndexedDB storage wrapper for GrapesJS
 
 |Option|Description|Default|
 |-|-|-
-|`option1`|Description option|`default value`|
+| `dbName` | DB name | `gjs` |
+| `objectStoreName` | Collection name | `templates` |
 
 
 
@@ -46,7 +38,7 @@ IndexedDB storage wrapper for GrapesJS
 * NPM
   * `npm i grapesjs-indexeddb`
 * GIT
-  * `git clone https://github.com/YOUR-NAME/grapesjs-indexeddb.git`
+  * `git clone https://github.com/artf/grapesjs-indexeddb.git`
 
 
 
@@ -65,6 +57,12 @@ IndexedDB storage wrapper for GrapesJS
   var editor = grapesjs.init({
       container : '#gjs',
       ...
+      storageManager: {
+        type: 'indexeddb',
+        // In case of multiple editors on the same page indicate an id to
+        // prevent collisions
+        id: 'some-id',
+      },
       plugins: ['grapesjs-indexeddb'],
       pluginsOpts: {
         'grapesjs-indexeddb': {
@@ -84,7 +82,7 @@ IndexedDB storage wrapper for GrapesJS
 Clone the repository
 
 ```sh
-$ git clone https://github.com/YOUR-NAME/grapesjs-indexeddb.git
+$ git clone https://github.com/artf/grapesjs-indexeddb.git
 $ cd grapesjs-indexeddb
 ```
 
