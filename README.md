@@ -2,11 +2,7 @@
 
 IndexedDB storage wrapper for GrapesJS
 
-### Usage
-1. Update README
-1. When you're ready update the production file `npm run build`
-1. Publish
-
+> Requires GrapesJS v0.14.15 or higher
 
 
 

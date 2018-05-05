@@ -25,10 +25,11 @@ export default grapesjs.plugins.add('grapesjs-indexeddb', (editor, opts = {}) =>
     } else {
       const indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
       const request = indexedDB.open(options.dbName, 1);
-      request.onerror = () => sm.onError(storageName, request.errorCode);
+      const onError = () => sm.onError(storageName, request.errorCode);
+      request.onerror = onError;
       request.onsuccess = () => {
         db = request.result;
-        db.onerror = () => sm.onError(storageName, request.errorCode);
+        db.onerror = onError;
         clb(db);
       };
       request.onupgradeneeded = e => {
