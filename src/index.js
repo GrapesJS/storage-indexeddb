@@ -12,10 +12,12 @@ export default grapesjs.plugins.add('grapesjs-indexeddb', (editor, opts = {}) =>
 
   let db;
   const sm = editor.StorageManager;
-  const id = sm.getConfig().id || 'gjs';
   const storageName = 'indexeddb';
   const objsName = options.objectStoreName;
 
+  const getId = () => sm.getConfig().id || 'gjs';
+
+  // Functions for DB retrieving
   const getDb = () => db;
   const getAsyncDb = (clb) => {
     if (db)  {
@@ -35,6 +37,7 @@ export default grapesjs.plugins.add('grapesjs-indexeddb', (editor, opts = {}) =>
     }
   };
 
+  // Functions for object store retrieving
   const getObjectStore = () => {
     return db.transaction([objsName], 'readwrite').objectStore(objsName);
   };
@@ -46,6 +49,7 @@ export default grapesjs.plugins.add('grapesjs-indexeddb', (editor, opts = {}) =>
     }
   };
 
+  // Add custom storage to the editor
   sm.add(storageName, {
     getDb,
 
@@ -53,7 +57,7 @@ export default grapesjs.plugins.add('grapesjs-indexeddb', (editor, opts = {}) =>
 
     load(keys, clb, clbErr) {
       getAsyncObjectStore(objs => {
-        const request = objs.get(id);
+        const request = objs.get(getId());
         request.onerror = clbErr;
         request.onsuccess = () => {
           const { id, ...data } = request.result || {};
@@ -64,7 +68,7 @@ export default grapesjs.plugins.add('grapesjs-indexeddb', (editor, opts = {}) =>
 
     store(data, clb, clbErr) {
       getAsyncObjectStore(objs => {
-        const request = objs.put({ id, ...data });
+        const request = objs.put({ id: getId(), ...data });
         request.onerror = clbErr;
         request.onsuccess = clb;
       });
