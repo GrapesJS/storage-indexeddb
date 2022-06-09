@@ -20,8 +20,8 @@ IndexedDB storage wrapper for GrapesJS
 
 |Option|Description|Default|
 |-|-|-
-| `dbName` | DB name | `gjs` |
-| `objectStoreName` | Collection name | `templates` |
+| `type` | Type id used to register the new storage. You can use this option in case you want to replace the already available storages (eg. `local`). | `indexeddb` |
+| `options` | Default storage options. | `{ key: 'gjsProject', dbName: 'gjs', objectStoreName: 'projects' }` |
 
 
 
@@ -53,16 +53,18 @@ IndexedDB storage wrapper for GrapesJS
   var editor = grapesjs.init({
       container : '#gjs',
       ...
-      storageManager: {
-        type: 'indexeddb',
-        // In case of multiple editors on the same page indicate an id to
-        // prevent collisions
-        id: 'some-id',
-      },
+      storageManager: { type: 'indexeddb' },
       plugins: ['grapesjs-indexeddb'],
       pluginsOpts: {
         'grapesjs-indexeddb': {
-          // options
+          options: {
+            // In case of multiple projects on the same page indicate an id to
+            // prevent collisions
+            key: 'user-project-id',
+            // Update IndexedDB name for the DB and the table containing project data
+            dbName: 'editorLocalData',
+            objectStoreName: 'projects',
+          }
         }
       }
   });
