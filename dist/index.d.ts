@@ -1,4 +1,4 @@
-import type grapesjs from 'grapesjs';
+import grapesjs from 'grapesjs';
 
 export declare type StorageOptions = {
 	/**
@@ -30,6 +30,9 @@ export declare type PluginOptions = {
 	options?: StorageOptions;
 };
 declare const plugin: grapesjs.Plugin<PluginOptions>;
-export default plugin;
+
+export {
+	plugin as default,
+};
 
 export {};

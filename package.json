@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-indexeddb",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "GrapesJS IndexedDB Storage",
   "main": "dist/index.js",
   "scripts": {
