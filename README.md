@@ -2,7 +2,7 @@
 
 IndexedDB storage wrapper for GrapesJS
 
-> Requires GrapesJS v0.14.15 or higher
+> Requires GrapesJS v0.19.* or higher
 
 
 
@@ -86,12 +86,6 @@ Install dependencies
 
 ```sh
 $ npm i
-```
-
-The plugin relies on GrapesJS via `peerDependencies` so you have to install it manually (without adding it to package.json)
-
-```sh
-$ npm i grapesjs --no-save
 ```
 
 Start the dev server

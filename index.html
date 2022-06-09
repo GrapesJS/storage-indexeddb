@@ -25,29 +25,31 @@
 
 
     <script type="text/javascript">
-      var editor = grapesjs.init({
-        height: '100%',
-        showOffsets: 1,
-        noticeOnUnload: 0,
-        storageManager: { type: 'indexeddb', autoload: 0 },
-        container: '#gjs',
-        fromElement: true,
+      setTimeout(() => {
+        var editor = grapesjs.init({
+          height: '100%',
+          showOffsets: 1,
+          noticeOnUnload: 0,
+          storageManager: { type: 'indexeddb', autoload: 0 },
+          container: '#gjs',
+          fromElement: true,
 
-        plugins: ['grapesjs-indexeddb'],
-        pluginsOpts: {
-          'grapesjs-indexeddb': {}
-        }
-      });
-      window.editor = editor;
+          plugins: ['grapesjs-indexeddb'],
+          pluginsOpts: {
+            'grapesjs-indexeddb': {}
+          }
+        });
+        window.editor = editor;
 
-      editor.on('storage:load', function(e) {
-        console.log('STORAGE:LOAD ', e);
-      });
-      editor.on('storage:store', function(e) {
-        console.log('STORAGE:STORE ', e);
-      });
-      editor.on('storage:error', function(e) {
-        console.log('STORAGE:ERROR ', e);
+        editor.on('storage:load', function(e) {
+          console.log('STORAGE:LOAD ', e);
+        });
+        editor.on('storage:store', function(e) {
+          console.log('STORAGE:STORE ', e);
+        });
+        editor.on('storage:error', function(e) {
+          console.log('STORAGE:ERROR ', e);
+        });
       });
     </script>
   </body>
