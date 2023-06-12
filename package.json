@@ -1,9 +1,11 @@
 {
   "name": "grapesjs-indexeddb",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "GrapesJS IndexedDB Storage",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "patch": "npm version patch -m 'Bump v%s'",
     "start": "grapesjs-cli serve",
