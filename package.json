@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/artf/grapesjs-indexeddb.git"
+    "url": "https://github.com/GrapesJS/storage-indexeddb.git"
   },
   "keywords": [
     "grapesjs",
@@ -21,7 +21,7 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "grapesjs": "^0.19.4",
-    "grapesjs-cli": "^3.0.1"
+    "grapesjs": "^0.21.2",
+    "grapesjs-cli": "^4.1.1"
   }
 }
