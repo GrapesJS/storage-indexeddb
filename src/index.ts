@@ -1,4 +1,4 @@
-import type grapesjs from 'grapesjs';
+import type { Plugin, ProjectData } from 'grapesjs';
 
 export type StorageOptions = {
   /**
@@ -34,9 +34,7 @@ export type PluginOptions = {
   options?: StorageOptions,
 };
 
-type ProjectData = grapesjs.ProjectData;
-
-const plugin: grapesjs.Plugin<PluginOptions> = (editor, opts = {}) => {
+const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
   const storageOptions: StorageOptions = {
     key: 'gjsProject',
     dbName: 'gjs',
