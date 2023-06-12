@@ -34,7 +34,7 @@ IndexedDB storage wrapper for GrapesJS
 * NPM
   * `npm i grapesjs-indexeddb`
 * GIT
-  * `git clone https://github.com/artf/grapesjs-indexeddb.git`
+  * `git clone https://github.com/GrapesJS/storage-indexeddb.git`
 
 
 
@@ -80,7 +80,7 @@ IndexedDB storage wrapper for GrapesJS
 Clone the repository
 
 ```sh
-$ git clone https://github.com/artf/grapesjs-indexeddb.git
+$ git clone https://github.com/GrapesJS/storage-indexeddb.git
 $ cd grapesjs-indexeddb
 ```
 
